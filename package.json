@@ -1,0 +1,24 @@
+{
+  "name": "@instellate/anilist.js",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "ts-node ./index.ts",
+    "build:types": "tsc --project ./tsconfig.json --outDir ./dist/types",
+    "build:lib": "babel ./src --out-dir ./dist --extensions .ts"
+  },
+  "description": "A fullpacked anilist library made in TS",
+  "main": "dist/index.js",
+  "author": "Instellate",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "axios": "^0.25.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.8",
+    "@babel/preset-typescript": "^7.16.7",
+    "babel-plugin-add-module-exports": "^1.0.4"
+  }
+}
