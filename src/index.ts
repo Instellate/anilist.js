@@ -38,9 +38,9 @@ class Anilist {
      * @param type The type, can be either anime or manga
      * @param page Which page to show
      * @param resultsCount How many results to show per page
-     * @param isAdult Will show media for 18+ if true
+     * @param isAdult Will show media for 18+ content if true
      * 
-     * @returns {array} An array of all results
+     * @returns {Promise<any>} An array of all results
      */
     search(name: string, type: string, page: number = 1, resultsCount: number = 5, isAdult: boolean = false) {
         mediaSearch(name, type, page, resultsCount, isAdult)
