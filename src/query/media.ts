@@ -22,6 +22,7 @@ async function search(name: string, type: String, page: Number = 1, resultsCount
   if (typeof type != "string") throw new Error('type must be a string')
   if (!(type === 'anime' || 'manga')) throw new Error('type must be anime or manga')
   if (typeof isAdult != "boolean") throw new Error('isAdult must be a boolean')
+  if(resultsCount > 50) throw new Error('resultsCount must be less than 50')
 
   let res = await post(url, {
     query: `query($name: String, $type: String, $page: Int, $perPage: Int) {
