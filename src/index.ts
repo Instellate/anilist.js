@@ -1,3 +1,5 @@
+import { search as mediaSearch } from './query/media'
+
 
 
 class Anilist {
@@ -28,6 +30,8 @@ class Anilist {
     async setAuth(auth: string) {
         this.AuthToken = auth
     }
+
+    mediaSearch(name: string, type: string, page: number = 1, resultsCount: number = 5, isAdult: boolean = false) {
 }
 
 export default Anilist;
