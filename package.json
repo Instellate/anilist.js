@@ -1,6 +1,6 @@
 {
   "name": "@instellate/anilist.js",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "scripts": {
     "start": "ts-node ./index.ts",
     "build:types": "tsc --project ./tsconfig.json --outDir ./dist/types",
@@ -10,6 +10,7 @@
   "main": "dist/index.js",
   "author": "Instellate",
   "license": "MIT",
+  "homepage": "https://anilist-js.netlify.app/",
   "private": false,
   "repository": "https://github.com/Instellate/anilist.js.git",
   "types": "dist/types/index.d.ts",
