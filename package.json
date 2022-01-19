@@ -1,9 +1,9 @@
 {
   "name": "@instellate/anilist.js",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "scripts": {
     "start": "ts-node ./index.ts",
-    "build:types": "tsc --project ./tsconfig.json --outDir ./dist",
+    "build:types": "tsc --project ./tsconfig.json --outDir ./dist/types",
     "build:lib": "babel ./src --out-dir ./dist --extensions .ts"
   },
   "description": "A fullpacked anilist library made in TS",
@@ -11,11 +11,8 @@
   "author": "Instellate",
   "license": "MIT",
   "private": false,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Instellate/anilist.js.git"
-  },
-  "types": "dist/index.d.ts",
+  "repository": "https://github.com/Instellate/anilist.js.git",
+  "types": "dist/types/index.d.ts",
   "dependencies": {
     "axios": "^0.25.0"
   },
