@@ -11,5 +11,8 @@
         ],
         "@babel/preset-typescript"
     ],
-    "plugins": ["add-module-exports"]
+    "plugins": ["add-module-exports"],
+    "ignore": [
+        "./src/types"
+    ]
 }

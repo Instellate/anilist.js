@@ -4,10 +4,15 @@
         "declaration": true,
         "emitDeclarationOnly": true,
         // Ensure that Babel can safely transpile files in the TypeScript project
-        "isolatedModules": true
+        "isolatedModules": false,
+        "lib": [
+          "es2018",
+          "DOM"
+        ],
       },
       "include": [
-        "src/**/*"
+        "src/**/*",
+        "src/types/*"
       ],
-      "exclude": ["node_modules", "**/*.spec.ts"]
+      "exclude": ["node_modules", "**/*.spec.ts"],
 }
