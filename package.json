@@ -6,7 +6,7 @@
     "build:types": "tsc --project ./tsconfig.json --outDir ./dist/types",
     "build:lib": "babel ./src --out-dir ./dist --extensions .ts"
   },
-  "description": "A fullpacked anilist library made in TS",
+  "description": "A unofficial fullpacked anilist library made in TS",
   "main": "dist/index.js",
   "author": "Instellate",
   "license": "MIT",
