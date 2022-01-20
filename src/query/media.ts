@@ -1,19 +1,9 @@
-import post from 'axios'
+import axios from 'axios'
+import { AnimeFormat } from './media.types'
 
 const url = 'https://graphql.anilist.co/'
 
-enum MediaFormat {
-  'TV' = 'tv',
-  'TV_SHORT' = 'tv_short',
-  'MOVIE' = 'movie',
-  'SPECIAL' = 'special',
-  'OVA' = 'ova',
-  'ONA' = 'ona',
-  'MUSIC' = 'music',
-  'MANGA' = 'manga',
-  'NOVEL' = 'novel',
-  'ONE_SHOT' = 'one_shot',
-}
+
 async function search(name: string, type: String, page: Number = 1, resultsCount: Number = 5, isAdult: Boolean = false) {
 
   if (typeof name != "string") throw new Error('id must be a string')
@@ -24,8 +14,10 @@ async function search(name: string, type: String, page: Number = 1, resultsCount
   if (typeof isAdult != "boolean") throw new Error('isAdult must be a boolean')
   if (resultsCount > 50) throw new Error('resultsCount must be less than 50')
 
-  let res = await post(url, {
-    query: `query($name: String, $type: String, $page: Int, $perPage: Int) {
+  let res = await axios('https://graphql.anilist.co', {
+    method: 'post',
+    data: {
+      query: `query($name: String, $type: MediaType, $page: Int, $perPage: Int) {
             Page(page: $page, perPage: $perPage) {
               media(search: $name, type: $type) {
                 id
@@ -40,27 +32,30 @@ async function search(name: string, type: String, page: Number = 1, resultsCount
             }
           }
           `,
-    variables: {
-      name: name,
-      type: type.toUpperCase(),
-      page: page,
-      perPage: resultsCount
+      variables: {
+        name: name,
+        type: type.toUpperCase(),
+        page: page,
+        perPage: resultsCount
+      }
     }
   })
-  const data = []
-  res.data.Page.media.forEach(element => {
+  const data = {
+    data: []
+  }
+  res.data.data.Page.media.forEach(element => {
     if (isAdult === false) {
       if (element.isAdult === false) {
-        data.push({
+        data.data.push({
           id: element.id,
           title: element.title,
-          format: element.format[MediaFormat.toString()]
+          format: AnimeFormat[element.format],
         })
       } else {
         return
       }
     } else {
-      data.push(element)
+      data.data.push(element)
     }
   });
   return data

@@ -2,7 +2,7 @@
   "name": "@instellate/anilist.js",
   "version": "0.1.4",
   "scripts": {
-    "start": "ts-node ./index.ts",
+    "start": "ts-node ./test/index.ts",
     "build:types": "tsc --project ./tsconfig.json --outDir ./dist/types",
     "build:lib": "babel ./src --out-dir ./dist --extensions .ts"
   },
@@ -21,7 +21,6 @@
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.7",
     "@babel/preset-env": "^7.16.8",
-    "@babel/preset-typescript": "^7.16.7",
-    "babel-plugin-add-module-exports": "^1.0.4"
+    "@babel/preset-typescript": "^7.16.7"
   }
 }

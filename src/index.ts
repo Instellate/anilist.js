@@ -1,6 +1,5 @@
 import { search as mediaSearch } from './query/media'
-
-
+import { searchReturn } from './query/media.types'
 
 class Anilist {
 
@@ -13,12 +12,15 @@ class Anilist {
      * @param {boolean} options.rateLimitPrevent Decided if requests gets tracked and prevented by the library or the api
      * @param {number} options.requestsPerMinute The amount of requests per minute the ratelimit is. Default: 90
      */
-    constructor(options?: {
-        rateLimitPrevent?: boolean;
-        requestsPerMinutes?: number;
+    constructor(options: {
+        rateLimitPrevent: boolean;
+        requestsPerMinutes: number;
+    } = {
+        rateLimitPrevent: false,
+        requestsPerMinutes: 90
     }) {
-        this.rtp = options.rateLimitPrevent || false;
-        this.rpl = options.requestsPerMinutes || 90
+        this.rtp = options.rateLimitPrevent;
+        this.rpl = options.requestsPerMinutes
         this.AuthToken = null
     }
 
@@ -40,11 +42,11 @@ class Anilist {
      * @param resultsCount How many results to show per page
      * @param isAdult Will show media for 18+ content if true
      * 
-     * @returns {Promise<any>} An array of all results
+     * @returns {Promise<searchReturn>}} An array of all results
      */
     search(name: string, type: string, page: number = 1, resultsCount: number = 5, isAdult: boolean = false) {
-        mediaSearch(name, type, page, resultsCount, isAdult)
+        return mediaSearch(name, type, page, resultsCount, isAdult)
     }
 }
 
-export default Anilist;
+export default Anilist
