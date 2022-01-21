@@ -1,9 +1,39 @@
-import { search as mediaSearch } from './query/media'
+import { search as _search } from './query/media'
+import { userList as _userList } from './query/user'
 import { searchReturn } from './query/media.types'
+
 
 class Anilist {
 
     [x: string]: any;
+    media = {
+        /**
+         * Search for a media.
+         * 
+         * @param name The name of the media to search for
+         * @param type The type, can be either anime or manga
+         * @param page Which page to show
+         * @param resultsCount How many results to show per page
+         * @param isAdult Will show media for 18+ content if true
+         * 
+         * @returns {Promise<import('./query/media.types').searchReturn>} An array of all results
+         */
+        search(name: string, type: string, page: number = 1, resultsCount: number = 5, isAdult: boolean = false) {
+            return _search(name, type, page, resultsCount, isAdult)
+        }
+    };
+    user = {
+        /**
+         * Get a user's list
+         * 
+         * @param name The name of the user
+         * @param type The type of list, can be either anime or manga
+         */
+        list(name: string, type: string) {
+            return _userList(name, type)
+        }
+    }
+
     /**
      * Anilist parameters
      * 
@@ -16,9 +46,9 @@ class Anilist {
         rateLimitPrevent: boolean;
         requestsPerMinutes: number;
     } = {
-        rateLimitPrevent: false,
-        requestsPerMinutes: 90
-    }) {
+            rateLimitPrevent: false,
+            requestsPerMinutes: 90
+        }) {
         this.rtp = options.rateLimitPrevent;
         this.rpl = options.requestsPerMinutes
         this.AuthToken = null
@@ -33,20 +63,6 @@ class Anilist {
         this.AuthToken = auth
     }
 
-    /**
-     * Search for a media.
-     * 
-     * @param name The name of the media to search for
-     * @param type The type, can be either anime or manga
-     * @param page Which page to show
-     * @param resultsCount How many results to show per page
-     * @param isAdult Will show media for 18+ content if true
-     * 
-     * @returns {Promise<searchReturn>}} An array of all results
-     */
-    search(name: string, type: string, page: number = 1, resultsCount: number = 5, isAdult: boolean = false) {
-        return mediaSearch(name, type, page, resultsCount, isAdult)
-    }
 }
 
 export default Anilist
